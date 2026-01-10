@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: mt7981-24.10
+name: mt7981-2410-jcg-q30
 
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
