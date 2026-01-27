@@ -20,7 +20,7 @@ dailook大佬源码网址: https://github.com/dailook/immortalwrt-mt798x-24.10
 
 使用p3terx云编译模板
 
-固件位置： https://github.com/sonytxl/xiaomi-360-cmcc-immortalwrt/releases
+固件位置：https://github.com/yhlh9982/MT798X-IstoreOS.style/releases
      
 注意事项：
 
