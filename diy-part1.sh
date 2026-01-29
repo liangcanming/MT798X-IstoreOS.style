@@ -26,15 +26,15 @@ git clone --depth=1 -b master https://github.com/QiuSimons/luci-app-daed  packag
 git clone --depth=1 -b master https://github.com/fw876/helloworld  package/helloworld
 
 # 功能插件
-git clone --depth=1 https://github.com/sirpdboy/luci-app-watchdog  package/watchdog
-git clone --depth=1 https://github.com/sirpdboy/luci-app-taskplan  package/taskplan
-git clone --depth=1 https://github.com/iv7777/luci-app-authshield  package/authshield
-git clone --depth=1 https://github.com/EasyTier/luci-app-easytier  package/easytier
-git clone --depth=1 https://github.com/Tokisaki-Galaxy/luci-app-tailscale-community  package/tailscale
+git clone --depth=1 https://github.com/sirpdboy/luci-app-watchdog package/watchdog
+git clone --depth=1 https://github.com/sirpdboy/luci-app-taskplan package/taskplan
+git clone --depth=1 https://github.com/iv7777/luci-app-authshield package/authshield
+git clone --depth=1 https://github.com/EasyTier/luci-app-easytier package/easytier
+git clone --depth=1 https://github.com/Tokisaki-Galaxy/luci-app-tailscale-community package/tailscale
 
 # 主题
-git clone --depth=1 -b openwrt-24.10 https://github.com/sbwml/luci-theme-argon.git  package/argon
-git clone --depth=1 https://github.com/eamonxg/luci-theme-aurora.git  package/aurora  
-git clone --depth=1 https://github.com/eamonxg/luci-app-aurora-config.git  package/aurora-config
-git clone --depth=1 https://github.com/sirpdboy/luci-theme-kucat.git  package/kucat
-git clone --depth=1 -b master https://github.com/sirpdboy/luci-app-kucat-config.git  package/kucat-config
+git clone --depth=1 -b openwrt-24.10 https://github.com/sbwml/luci-theme-argon package/argon
+git clone --depth=1 https://github.com/eamonxg/luci-theme-aurora package/aurora  
+git clone --depth=1 https://github.com/eamonxg/luci-app-aurora-config package/aurora-config
+git clone --depth=1 https://github.com/sirpdboy/luci-theme-kucat package/kucat
+git clone --depth=1 -b master https://github.com/sirpdboy/luci-app-kucat-config package/kucat-config
