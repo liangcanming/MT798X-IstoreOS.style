@@ -16,14 +16,31 @@ echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.
 echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
 
 # 科学插件
-sed -i '1i src-git passwall https://github.com/Openwrt-Passwall/openwrt-passwall.git;main' feeds.conf.default
-sed -i '2i src-git passwall2 https://github.com/Openwrt-Passwall/openwrt-passwall2.git;main' feeds.conf.default
-sed -i '3i src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main' feeds.conf.default
-sed -i '4i src-git OpenClash https://github.com/vernesong/OpenClash.git;master' feeds.conf.default
-echo "src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main" >> "feeds.conf.default"
-echo "src-git momo https://github.com/nikkinikki-org/OpenWrt-momo.git;main" >> "feeds.conf.default"
-echo "src-git daed https://github.com/QiuSimons/luci-app-daed;master" >> "feeds.conf.default"
-echo "src-git helloworld https://github.com/fw876/helloworld.git;master" >> "feeds.conf.default"
+# 1️⃣ 先清理可能已存在的 feed（去重）
+sed -i \
+  -e '/linkease\/istore/d' \
+  -e '/nas-packages/d' \
+  -e '/openwrt-passwall/d' \
+  -e '/openwrt-passwall2/d' \
+  -e '/openwrt-passwall-packages/d' \
+  -e '/vernesong\/OpenClash/d' \
+  -e '/OpenWrt-nikki/d' \
+  -e '/OpenWrt-momo/d' \
+  -e '/^src-git[[:space:]]\+daed[[:space:]]/d' \
+  -e '/fw876\/helloworld/d' \
+  feeds.conf.default
+
+cat >> feeds.conf.default << 'EOF'
+src-git passwall https://github.com/Openwrt-Passwall/openwrt-passwall.git;main
+src-git passwall2 https://github.com/Openwrt-Passwall/openwrt-passwall2.git;main
+src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main
+src-git OpenClash https://github.com/vernesong/OpenClash.git;master
+src-git nikki https://github.com/nikkinikki-org/OpenWrt-nikki.git;main
+src-git momo https://github.com/nikkinikki-org/OpenWrt-momo.git;main
+src-git daed https://github.com/QiuSimons/luci-app-daed.git;master
+src-git helloworld https://github.com/fw876/helloworld.git;master
+EOF
+
 
 # 插件添加
 git clone --depth=1 https://github.com/sirpdboy/luci-app-watchdog package/watchdog
