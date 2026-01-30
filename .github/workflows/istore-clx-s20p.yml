@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2019-2020 P3TERX <https://p3terx.com >
+# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
 #
 # Description: Build OpenWrt using GitHub Actions
 #
@@ -7,7 +7,7 @@
 name: mt7981-24.10-6.6
 
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6 
+  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
   REPO_BRANCH: openwrt-24.10-6.6
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: mt7981-24.10-6.6.config
@@ -21,12 +21,14 @@ env:
   TZ: Asia/Shanghai
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - '.github/workflows/**'
-  repository_dispatch:
+  # 如果你想恢复自动编译，把下面被注释的 push 部分解开即可
+  # push:
+  #   branches:
+  #     - main
+  #   paths-ignore:
+  #     - '.github/workflows/**'
+  
+  # 目前仅保留手动触发，避免一改代码就跑
   workflow_dispatch:
     inputs:
       ssh:
@@ -66,7 +68,7 @@ jobs:
         sudo -E timedatectl set-timezone "$TZ"
         
         sudo apt -yqq install dos2unix libfuse-dev
-        sudo bash -c 'bash <(curl -sL https://build-scripts.immortalwrt.org/init_build_environment.sh )'
+        sudo bash -c 'bash <(curl -sL https://build-scripts.immortalwrt.org/init_build_environment.sh)'
         
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
@@ -106,7 +108,7 @@ jobs:
     # 7. SSH 调试 (可选)
     - name: SSH connection to Actions (SSH 调试)
       uses: mxschmitt/action-tmate@v3
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh != 'false') || contains(github.event.action, 'ssh')
 
     # 8. 下载软件包 (预下载以防编译时网络中断)
     - name: Download package (下载软件包)
@@ -134,7 +136,7 @@ jobs:
 
     # 10. 上传 bin 目录 (Artifacts)
     - name: Upload bin directory (上传 bin 目录)
-      uses: actions/upload-artifact@main  # 固定版本
+      uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: OpenWrt_bin_${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
@@ -152,7 +154,7 @@ jobs:
 
     # 12. 上传固件目录 (Artifacts)
     - name: Upload OpenWrt_firmware directory (上传固件目录)
-      uses: actions/upload-artifact@v4  # 固定版本
+      uses: actions/upload-artifact@v4
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: OpenWrt_firmware_${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
