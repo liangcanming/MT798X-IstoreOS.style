@@ -32,10 +32,7 @@ env:
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
-"on":
-  push:
-    branches:
-      - main
+on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
@@ -43,6 +40,8 @@ env:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+#  schedule:
+#    - cron: 0 8 */5 * *
 
 jobs:
   build:
