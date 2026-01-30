@@ -166,7 +166,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     # 12. 上传固件目录 (Artifacts)
-    - name: Upload firmware directory （上传固件目录）
+    - name: Upload OpenWrt_firmware directory （上传固件目录）
       uses: actions/upload-artifact@main
       with:
         name: OpenWrt_firmware_${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}  # 改为 firmware
